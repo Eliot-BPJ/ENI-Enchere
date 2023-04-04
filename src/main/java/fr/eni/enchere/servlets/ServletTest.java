@@ -1,4 +1,4 @@
-package fr.eni.enchere;
+package fr.eni.enchere.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet
+ * Servlet implementation class ServletTest
  */
-@WebServlet("/Servlet")
-public class Servlet extends HttpServlet {
+@WebServlet("/ServletTest")
+public class ServletTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public Servlet() {
+    public ServletTest() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
