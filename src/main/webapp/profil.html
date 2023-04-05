@@ -30,7 +30,7 @@
                         <a class="nav-link" aria-current="page" href="index.html">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profil.html">Mon profil</a>
+                        <a class="nav-link active" href="profil.html">Mon profil</a>
                     </li>
                     <li>
                         <a class="nav-link" href="#">Mes enchères</a>
@@ -72,54 +72,58 @@
                 <form action="inscription" method="POST">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
-                            <label for="pseudo" class="form-label">Pseudo</label>
-                            <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Votre pseudo">
+                            <label for="pseudo" class="form-label">Pseudonyme</label>
+                            <input type="text" class="form-control" id="pseudo" name="pseudo"
+                                placeholder={{user.pseudo}}>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder={{user.nom}}>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="prenom" class="form-label">Prénom</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prénom">
+                            <input type="text" class="form-control" id="prenom" name="prenom"
+                                placeholder={{user.prenom}}>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Votre email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder={{user.email}}>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="telephone" class="form-label">Téléphone</label>
-                            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Votre téléphone">
+                            <input type="tel" class="form-control" id="telephone" name="telephone"
+                                placeholder={{user.telephone}}>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="rue" class="form-label">Rue</label>
-                            <input type="text" class="form-control" id="rue" name="rue" placeholder="Nom de votre rue">
+                            <input type="text" class="form-control" id="rue" name="rue" placeholder={{user.rue}}>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="codePostal" class="form-label">Code postal</label>
                             <input type="text" class="form-control" id="codePostal" name="codePostal"
-                                placeholder="Votre code postal">
+                                placeholder="{{user.cp}}">
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="ville" class="form-label">Ville</label>
-                            <input type="text" class="form-control" id="ville" name="ville" placeholder="Votre ville">
+                            <input type="text" class="form-control" id="ville" name="ville" placeholder={{user.ville}}>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="mdp" class="form-label">Mot de passe</label>
-                            <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Votre mot de passe">
+                            <input type="password" class="form-control" id="mdp" name="mdp"
+                                placeholder="********">
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="mdp2" class="form-label">Confirmation du mot de passe</label>
                             <input type="password" class="form-control" id="mdp2" name="mdp2"
-                                placeholder="Votre mot de passe">
+                                placeholder="********">
                         </div>
                     </div>
                     <div class="row">
@@ -137,4 +141,5 @@
 
 
 </body>
+
 </html>
