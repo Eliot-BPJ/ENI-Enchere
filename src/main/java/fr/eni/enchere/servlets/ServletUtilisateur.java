@@ -1,23 +1,30 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.dal.DAOFactory;
+import fr.eni.enchere.dal.UtilisateurDAO;
+
 /**
- * Servlet implementation class ServletTest
+ * Servlet implementation class ServletUtilisateur
  */
-@WebServlet("/ServletTest")
-public class ServletTest extends HttpServlet {
+@WebServlet("/ServletUtilisateur")
+public class ServletUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UtilisateurManager utilisateur = new UtilisateurManager();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletTest() {
+    public ServletUtilisateur() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +34,14 @@ public class ServletTest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String pseudo = request.getParameter("pseudo");
+		String password = request.getParameter("password");
+		String res = this.utilisateur.connectUtilisateur(pseudo, password);
+
+		request.setAttribute("res", res); 
+    	RequestDispatcher rd = request.getRequestDispatcher("/resultat.jsp"); 
+    	rd.forward(request, response);
+
 	}
 
 	/**
