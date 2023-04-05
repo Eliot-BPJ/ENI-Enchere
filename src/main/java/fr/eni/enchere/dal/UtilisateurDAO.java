@@ -7,4 +7,5 @@ public interface UtilisateurDAO {
 	public void createUtilisateur(UtilisateurBO user) throws DALException;
 	public void updateUtilisateur(UtilisateurBO user) throws DALException;
 	public void DeleteUtilisateur(UtilisateurBO user) throws DALException;
+	public UtilisateurBO SeConnecter(String pseudo, String password) throws DALException;
 }

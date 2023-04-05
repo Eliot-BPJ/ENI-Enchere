@@ -37,7 +37,7 @@ public class JdbcTools {
 		try {
 			//connection = DriverManager.getConnection(urldb, userdb, passworddb);
 			//TODO : Modifier Settings.properties etc...
-			connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=ENCHERES;user=EnchereAdmin;password=Password;encrypt=true;trustServerCertificate=true");
+			connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=ENCHERES;user=EncheresAdmin;password=Password;encrypt=true;trustServerCertificate=true");
 		} catch (SQLException e) {
 			throw new DALException("impossible d'obtenir la connexion",e );
 		}
