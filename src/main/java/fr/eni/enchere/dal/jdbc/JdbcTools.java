@@ -1,5 +1,7 @@
 package fr.eni.enchere.dal.jdbc;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,11 +35,23 @@ public class JdbcTools {
 	
 	public static Connection getConnection() throws DALException{
 		//Connection connection = DriverManager.getConnection(urldb);
+		String hostname = "Localhost";
+
+		try
+		{
+		    InetAddress addr;
+		    addr = InetAddress.getLocalHost();
+		    hostname = addr.getHostName();
+		}
+		catch (UnknownHostException ex)
+		{
+		    System.out.println("Hostname can not be resolved");
+		}
 		Connection connection;
 		try {
 			//connection = DriverManager.getConnection(urldb, userdb, passworddb);
 			//TODO : Modifier Settings.properties etc...
-			connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=ENCHERES;user=EncheresAdmin;password=Password;encrypt=true;trustServerCertificate=true");
+			connection = DriverManager.getConnection("jdbc:sqlserver://" + hostname +";databaseName=ENCHERES;user=EncheresAdmin;password=Password;encrypt=true;trustServerCertificate=true");
 		} catch (SQLException e) {
 			throw new DALException("impossible d'obtenir la connexion",e );
 		}

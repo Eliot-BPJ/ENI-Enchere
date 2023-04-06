@@ -18,6 +18,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String CONNECT = "SELECT no_utilisateur, pseudo, nom, prenom, email, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS set pseudo=?,nom=?,prenom=?,email=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE no_utilisateur = ?";
 		
 	@Override
 	public UtilisateurBO getUtilisateurByNo(int no) throws DALException {
@@ -83,6 +84,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			rqt.setString(9, user.getMotDePasse());
 			rqt.setInt(10, user.getCredit());
 			rqt.setBoolean(11, user.isAdministrateur());
+			rqt.setInt(12, user.getNoUtilisateur());
 			int nbRows = rqt.executeUpdate();
 			if(nbRows == 1){
 				ResultSet rs = rqt.getGeneratedKeys();
@@ -115,6 +117,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(UPDATE_USER);
 			rqt.setString(1, user.getPseudo());
 			rqt.setString(2, user.getNom());
 			rqt.setString(3, user.getPrenom());
