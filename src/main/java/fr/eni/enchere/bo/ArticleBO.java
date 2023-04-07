@@ -1,6 +1,6 @@
 package fr.eni.enchere.bo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ArticleBO {
 	private int noArticle;
@@ -11,7 +11,22 @@ public class ArticleBO {
 	private int prixInitial;
 	private int prixVente;
 	private CategorieBO categorie;
+	private UtilisateurBO acheteur;
+	private UtilisateurBO vendeur;
 	
+	public ArticleBO() {
+	}
+	public ArticleBO(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int prixInitial, int prixVente, CategorieBO categorie, UtilisateurBO vendeur) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.categorie = categorie;
+		this.vendeur = vendeur;
+	}
 	public String getNomArticle() {
 		return nomArticle;
 	}
@@ -47,6 +62,30 @@ public class ArticleBO {
 	}
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
+	}
+	public int getNoArticle() {
+		return noArticle;
+	}
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}
+	public CategorieBO getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(CategorieBO categorie) {
+		this.categorie = categorie;
+	}
+	public UtilisateurBO getAcheteur() {
+		return acheteur;
+	}
+	public void setAcheteur(UtilisateurBO acheteur) {
+		this.acheteur = acheteur;
+	}
+	public UtilisateurBO getVendeur() {
+		return vendeur;
+	}
+	public void setVendeur(UtilisateurBO vendeur) {
+		this.vendeur = vendeur;
 	}
 	@Override
 	public String toString() {

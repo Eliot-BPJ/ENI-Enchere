@@ -41,7 +41,6 @@ public class ServletUtilisateur extends HttpServlet {
 		request.setAttribute("res", res); 
     	RequestDispatcher rd = request.getRequestDispatcher("/resultat.jsp"); 
     	rd.forward(request, response);
-
 	}
 
 	/**
