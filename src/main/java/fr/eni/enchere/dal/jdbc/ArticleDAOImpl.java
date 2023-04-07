@@ -89,7 +89,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}
 
 		}catch(SQLException e){
-			throw new DALException("Insert user failed - " + article, e);
+			throw new DALException("Insert Article failed - " + article, e);
 		}
 		finally {
 			try {
