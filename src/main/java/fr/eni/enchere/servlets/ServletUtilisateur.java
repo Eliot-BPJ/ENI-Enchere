@@ -44,8 +44,8 @@ public class ServletUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("post");
-		String pseudo = request.getParameter("pseudo");
-		String password = request.getParameter("password");
+		String pseudo = request.getParameter("inputPseudo");
+		String password = request.getParameter("inputPassword");
 		UtilisateurBO res = this.utilisateur.connectUtilisateur(pseudo, password);
 		String redirectPath = null;
 		HttpSession session = request.getSession();
@@ -53,9 +53,9 @@ public class ServletUtilisateur extends HttpServlet {
 		if (res != null) {			
 			System.out.println("user: " + res);
 			session.setAttribute("user", res);
-			redirectPath = "/resultat.jsp";
+			redirectPath = "/index.html";
 		} else {
-			session.setAttribute("erreur", "Erreur lors de la récupération de l'utilisateur: " + pseudo);
+			session.setAttribute("erreur", "Erreur de connexion à l'utilisateur: " + pseudo);
 			redirectPath = "/erreur.jsp";
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 

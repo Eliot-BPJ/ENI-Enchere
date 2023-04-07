@@ -32,14 +32,14 @@
     </div>
 
     <div class="container mx-auto col-6 mt-5" style="width: 400px">
-      <form class="row g-3">
+      <form class="row g-3" role="form" action="/Enchère/ServletUtilisateur" method="post"">
         <div class="col-12">
-          <label for="inputIdentifiant" class="form-label">Identifiant :</label>
-          <input type="text" class="form-control" id="inputIdentifiant" />
+          <label for="inputPseudo" class="form-label">Pseudo :</label>
+          <input type="text" class="form-control" id="inputPseudo" name="inputPseudo" />
         </div>
         <div class="col-12">
-          <label for="inputMotdepasse" class="form-label">Mot de passe :</label>
-          <input type="password" class="form-control" id="inputMotdepasse" />
+          <label for="inputPassword" class="form-label">Mot de passe :</label>
+          <input type="password" class="form-control" id="inputPassword" name="inputPassword" />
         </div>
 
         <div class="row mt-3">
