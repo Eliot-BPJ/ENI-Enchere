@@ -1,11 +1,11 @@
 package fr.eni.enchere.bo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class EnchereBO {
 	private Date dateEnchere;
 	private int montantEnchere;
-	private UtilisateurBO utilisateur;
+	private UtilisateurBO acheteur;
 	private ArticleBO article;
 	
 	public EnchereBO() {
@@ -15,7 +15,7 @@ public class EnchereBO {
 		super();
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
-		this.utilisateur = utilisateur;
+		this.acheteur = utilisateur;
 		this.article = article;
 	}
 	
@@ -31,11 +31,11 @@ public class EnchereBO {
 	public void setMontantEnchere(int montantEnchere) {
 		this.montantEnchere = montantEnchere;
 	}
-	public UtilisateurBO getUtilisateur() {
-		return utilisateur;
+	public UtilisateurBO getAcheteur() {
+		return acheteur;
 	}
-	public void setUtilisateur(UtilisateurBO utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setAcheteur(UtilisateurBO utilisateur) {
+		this.acheteur = utilisateur;
 	}
 	public ArticleBO getArticle() {
 		return article;
@@ -51,7 +51,7 @@ public class EnchereBO {
 		builder.append(", getMontantEnchere()=");
 		builder.append(getMontantEnchere());
 		builder.append(", getUtilisateur()=");
-		builder.append(getUtilisateur());
+		builder.append(getAcheteur());
 		builder.append(", getArticle()=");
 		builder.append(getArticle());
 		builder.append("]");
