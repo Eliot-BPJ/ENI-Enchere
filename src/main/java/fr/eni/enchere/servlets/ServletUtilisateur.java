@@ -53,7 +53,7 @@ public class ServletUtilisateur extends HttpServlet {
 		if (res != null) {			
 			System.out.println("user: " + res);
 			session.setAttribute("user", res);
-			redirectPath = "/index.html";
+			redirectPath = "/index.jsp";
 		} else {
 			session.setAttribute("erreur", "Erreur de connexion à l'utilisateur: " + pseudo);
 			redirectPath = "/erreur.jsp";
