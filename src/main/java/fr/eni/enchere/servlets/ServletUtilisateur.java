@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.UtilisateurBO;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
@@ -34,21 +36,30 @@ public class ServletUtilisateur extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String pseudo = request.getParameter("pseudo");
-		String password = request.getParameter("password");
-		String res = this.utilisateur.connectUtilisateur(pseudo, password);
-
-		request.setAttribute("res", res); 
-    	RequestDispatcher rd = request.getRequestDispatcher("/resultat.jsp"); 
-    	rd.forward(request, response);
+		System.out.println("get");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("post");
+		String pseudo = request.getParameter("pseudo");
+		String password = request.getParameter("password");
+		UtilisateurBO res = this.utilisateur.connectUtilisateur(pseudo, password);
+		String redirectPath = null;
+		HttpSession session = request.getSession();
+		
+		if (res != null) {			
+			System.out.println("user: " + res);
+			session.setAttribute("user", res);
+			redirectPath = "/resultat.jsp";
+		} else {
+			session.setAttribute("erreur", "Erreur lors de la récupération de l'utilisateur: " + pseudo);
+			redirectPath = "/erreur.jsp";
+		}
+		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 
+		rd.forward(request, response);
 	}
 
 }

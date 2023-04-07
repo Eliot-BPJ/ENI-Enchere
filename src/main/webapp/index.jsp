@@ -11,14 +11,14 @@
 </head>
 <body>
 	<div class="container">
-		<form role="form" action="/Enchère/ServletUtilisateur">
+		<form role="form" action="/Enchère/ServletUtilisateur" method="post">
 			<div class="form-group">
-				<label for="pseudo">Pseudo</label> <input
+				<label for="pseudo">Pseudo</label> <input required
 					type="text" class="form-control" id="pseudo"
 					name="pseudo" placeholder="Pseudo">
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label> <input
+				<label for="password">Password</label> <input required
 					type="password" class="form-control" id="password"
 					name="password" placeholder="Password">
 			</div>

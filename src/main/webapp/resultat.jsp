@@ -1,3 +1,4 @@
+<%@page import="fr.eni.enchere.bo.UtilisateurBO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"	
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -8,8 +9,16 @@
 </head>
 <body>
 	<%
-		String res = (String) request.getAttribute("res");
+		UtilisateurBO user = (UtilisateurBO)session.getAttribute("user");
 	%>
-	Resultat : <%=res%>
+	User pseudo : <%=user.getPseudo()%>
+	<p></p>
+	User nom : <%=user.getNom()%>
+	<p></p>
+	User email : <%=user.getEmail()%>
+	<p></p>
+	User tel : <%=user.getTelephone()%>
+	<p></p>
+	User ville : <%=user.getVille()%>
 </body>
 </html>
