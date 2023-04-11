@@ -63,7 +63,7 @@ public class ArticleBO {
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
 	}
-	public int getNoArticle() {
+	public Integer getNoArticle() {
 		return noArticle;
 	}
 	public void setNoArticle(int noArticle) {
