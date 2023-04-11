@@ -11,7 +11,7 @@ public class MD5Utils {
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
     private static final String OUTPUT_FORMAT = "%-20s:%s";
 
-    private static byte[] digest(byte[] input) {
+    public static byte[] digest(byte[] input) {
         MessageDigest md;
         try {
             md = MessageDigest.getInstance("MD5");

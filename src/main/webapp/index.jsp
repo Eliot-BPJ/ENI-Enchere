@@ -68,12 +68,12 @@
     <div class="container mt-3">
       <div class="row">
         <div class="col-12">
-          <h3 class="text-center">Liste des enchères</h3>
+          <h4 class="text-center">Liste des enchères</h4>
         </div>
       </div>
 
       <div class="container">
-        <h3>Filtres :</h3>
+        <h4>Filtres :</h4>
         <div class="row form-group mt-5">
           <div class="col-5">
             <input

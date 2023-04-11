@@ -1,6 +1,7 @@
 package fr.eni.enchere.servlets.utilisateur;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.UtilisateurBO;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
+import fr.eni.enchere.utils.MD5Utils;
 
 /**
  * Servlet implementation class ServletUtilisateur
@@ -48,7 +50,9 @@ public class ServletConnexion extends HttpServlet {
 		UtilisateurBO res = this.utilisateur.connectUtilisateur(pseudo, password);
 		String redirectPath = null;
 		HttpSession session = request.getSession();
-		
+		String test = "test";
+	
+		MD5Utils.digest(test.getBytes(StandardCharsets.UTF_8));
 		if (res != null) {
 			System.out.println("Connexion: " + res);
 			session.setAttribute("user", res);

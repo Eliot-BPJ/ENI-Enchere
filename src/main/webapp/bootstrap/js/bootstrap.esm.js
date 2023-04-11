@@ -3459,7 +3459,7 @@ const DefaultAllowlist = {
   hr: [],
   h1: [],
   h2: [],
-  h3: [],
+  h4: [],
   h4: [],
   h5: [],
   h6: [],
@@ -4243,7 +4243,7 @@ const Default$2 = { ...Tooltip.Default,
   offset: [0, 8],
   trigger: 'click',
   content: '',
-  template: '<div class="popover" role="tooltip">' + '<div class="popover-arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div>' + '</div>'
+  template: '<div class="popover" role="tooltip">' + '<div class="popover-arrow"></div>' + '<h4 class="popover-header"></h4>' + '<div class="popover-body"></div>' + '</div>'
 };
 const DefaultType$2 = { ...Tooltip.DefaultType,
   content: '(string|element|function)'
