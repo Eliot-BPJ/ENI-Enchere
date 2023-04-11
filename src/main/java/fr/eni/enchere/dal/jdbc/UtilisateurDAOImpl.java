@@ -126,9 +126,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		try {
 			cnx = JdbcTools.getConnection();
-			System.out.println("La");
 			rqt = cnx.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
-			System.out.println("Par la");
 			rqt.setString(1, user.getPseudo());
 			rqt.setString(2, user.getNom());
 			rqt.setString(3, user.getPrenom());
@@ -140,8 +138,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			rqt.setString(9, user.getMotDePasse());
 			rqt.setInt(10, user.getCredit());
 			rqt.setBoolean(11, user.isAdministrateur());
-			rqt.setInt(12, user.getNoUtilisateur());
-			System.out.println("Ici");
 			int nbRows = rqt.executeUpdate();
 			if(nbRows == 1){
 				ResultSet rs = rqt.getGeneratedKeys();

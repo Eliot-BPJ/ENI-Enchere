@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-1"></div>
                         <div class="col-3 mx-auto">
-                            <a href="index.html" class="btn btn-dark">Retour</a>
+                            <a href="index.jsp" class="btn btn-dark">Retour</a>
                         </div>
                     </di>
                 </form>

@@ -49,7 +49,7 @@ public class ServletConnexion extends HttpServlet {
 		String redirectPath = null;
 		HttpSession session = request.getSession();
 		
-		if (res != null) {			
+		if (res != null) {
 			System.out.println("Connexion: " + res);
 			session.setAttribute("user", res);
 			redirectPath = "/index.jsp";

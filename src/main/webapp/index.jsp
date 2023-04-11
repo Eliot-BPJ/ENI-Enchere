@@ -45,7 +45,7 @@
               <p>
                 <a class="link-primary" href="profil.html">Enchères</a>
                 <a class="link-primary" href="profil.html">Vendre un article</a>
-                <a class="link-primary" href="profil.html">Mon profil</a>
+                <a class="link-primary" href="profil.jsp">Mon profil</a>
                 <a href="/Enchère/ServletUtilisateur" class="link-primary">Déconnexion</a>
               </p>
             </div>
