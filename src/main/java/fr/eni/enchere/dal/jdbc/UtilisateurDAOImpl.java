@@ -14,6 +14,8 @@ import fr.eni.enchere.dal.UtilisateurDAO;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private static final String sqlSelectById = "select no_utilisateur, pseudo, nom, prenom, email, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
 			" from UTILISATEURS where no_utilisateur = ?";
+	private static final String sqlSelectByPseudo = "select no_utilisateur, pseudo, nom, prenom, email, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
+			" from UTILISATEURS where pseudo = ?";
 	private static final String CREATE_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) "
 			+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
@@ -65,11 +67,61 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		return user;
 	}
-
+	
 	@Override
-	public void createUtilisateur(UtilisateurBO user) throws DALException {
+	public UtilisateurBO getUtilisateurByPseudo(String pseudo) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		UtilisateurBO user = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByPseudo);
+			rqt.setString(1, pseudo);
+			rs = rqt.executeQuery();
+			if (rs.next()){
+				user = new UtilisateurBO(rs.getString("pseudo"),
+							rs.getString("nom"),
+							rs.getString("prenom"),
+							rs.getString("email"),
+							rs.getString("rue"),
+							rs.getString("code_postal"),
+							rs.getString("ville"),
+							rs.getString("mot_de_passe"),
+							rs.getInt("credit"),
+							rs.getBoolean("administrateur"));
+				user.setNoUtilisateur(rs.getInt("no_utilisateur"));
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectById failed - id = " + pseudo , e);
+		} finally {
+			try {
+				if (rs != null){
+					rs.close();
+				}
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return user;
+	}
+
+	@Override
+	public UtilisateurBO createUtilisateur(UtilisateurBO user) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		if(getUtilisateurByPseudo(user.getPseudo()) != null)
+		{
+			throw new DALException("L'utilisateur existe déjà");
+		}
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
@@ -90,6 +142,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				ResultSet rs = rqt.getGeneratedKeys();
 				if(rs.next()){
 					user.setNoUtilisateur(rs.getInt(1));
+					return user;
 				}
 
 			}
@@ -109,7 +162,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				throw new DALException("close failed - ", e);
 			}
 
-		}	
+		}
+		return null;	
 	}
 
 	@Override

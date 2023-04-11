@@ -18,4 +18,31 @@ public class UtilisateurManager {
 		}
 		return null;
 	}
+	
+	public UtilisateurBO registerUtilisateur(String pseudo, String nom, String prenom, String email, String rue, String codePostal,
+			String ville, String motDePasse, int credit, boolean administrateur) {
+		UtilisateurBO user = null;
+		try {
+			
+			user.setPseudo(pseudo);
+			user.setNom(nom);
+			user.setPrenom(prenom);
+			user.setEmail(email);
+			user.setRue(rue);
+			user.setCodePostal(codePostal);
+			user.setVille(ville);
+			user.setMotDePasse(motDePasse);
+			user.setCredit(credit);
+			user.setAdministrateur(administrateur);
+			
+			user = userDAO.createUtilisateur(user);
+			
+			return user;
+			
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
