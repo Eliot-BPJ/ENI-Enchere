@@ -1,3 +1,6 @@
+<%@page import="fr.eni.enchere.bo.UtilisateurBO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +18,7 @@
 
 <body>
 
+<%	UtilisateurBO user = (UtilisateurBO)session.getAttribute("user");   	 %>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -38,45 +42,44 @@
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="pseudo" class="form-label">Pseudonyme</label>
-                            <input type="text" class="form-control" id="pseudo" name="pseudo"
-                                placeholder={{user.pseudo}}>
+                            <input type="text" class="form-control" id="pseudo" name="pseudo" value=<%=user.getPseudo()%>>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder={{user.nom}}>
+                            <input type="text" class="form-control" id="nom" name="nom" value=<%=user.getNom()%>>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="prenom" class="form-label">Prénom</label>
                             <input type="text" class="form-control" id="prenom" name="prenom"
-                                placeholder={{user.prenom}}>
+                                value=<%=user.getPrenom()%>>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder={{user.email}}>
+                            <input type="email" class="form-control" id="email" name="email" value=<%=user.getEmail()%>>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="telephone" class="form-label">Téléphone</label>
                             <input type="tel" class="form-control" id="telephone" name="telephone"
-                                placeholder={{user.telephone}}>
+                                value=<%=user.getTelephone()%>>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="rue" class="form-label">Rue</label>
-                            <input type="text" class="form-control" id="rue" name="rue" placeholder={{user.rue}}>
+                            <input type="text" class="form-control" id="rue" name="rue" value=<%=user.getRue()%>>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="codePostal" class="form-label">Code postal</label>
                             <input type="text" class="form-control" id="codePostal" name="codePostal"
-                                placeholder="{{user.cp}}">
+                                value=<%=user.getCodePostal()%>">
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="ville" class="form-label">Ville</label>
-                            <input type="text" class="form-control" id="ville" name="ville" placeholder={{user.ville}}>
+                            <input type="text" class="form-control" id="ville" name="ville" value=<%=user.getVille()%>>
                         </div>
                     </div>
                     <div class="row">
