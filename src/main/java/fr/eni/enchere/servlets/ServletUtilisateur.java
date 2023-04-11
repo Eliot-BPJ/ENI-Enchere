@@ -36,14 +36,15 @@ public class ServletUtilisateur extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("get");
+		System.out.println("deco");
+		request.getSession().setAttribute("user", null);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("post");
 		String pseudo = request.getParameter("inputPseudo");
 		String password = request.getParameter("inputPassword");
 		UtilisateurBO res = this.utilisateur.connectUtilisateur(pseudo, password);
@@ -51,7 +52,7 @@ public class ServletUtilisateur extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if (res != null) {			
-			System.out.println("user: " + res);
+			System.out.println("Connexion: " + res);
 			session.setAttribute("user", res);
 			redirectPath = "/index.jsp";
 		} else {
@@ -61,5 +62,6 @@ public class ServletUtilisateur extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 
 		rd.forward(request, response);
 	}
+	
 
 }
