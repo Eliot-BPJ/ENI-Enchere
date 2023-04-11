@@ -19,15 +19,16 @@ public class UtilisateurManager {
 		return null;
 	}
 	
-	public UtilisateurBO registerUtilisateur(String pseudo, String nom, String prenom, String email, String rue, String codePostal,
+	public UtilisateurBO registerUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
 			String ville, String motDePasse, int credit, boolean administrateur) {
-		UtilisateurBO user = null;
+		UtilisateurBO user = new UtilisateurBO();
 		try {
 			
 			user.setPseudo(pseudo);
 			user.setNom(nom);
 			user.setPrenom(prenom);
 			user.setEmail(email);
+			user.setTelephone(telephone);
 			user.setRue(rue);
 			user.setCodePostal(codePostal);
 			user.setVille(ville);

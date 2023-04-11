@@ -1,4 +1,4 @@
-package fr.eni.enchere.servlets;
+package fr.eni.enchere.servlets.utilisateur;
 
 import java.io.IOException;
 
@@ -19,14 +19,14 @@ import fr.eni.enchere.dal.UtilisateurDAO;
  * Servlet implementation class ServletUtilisateur
  */
 @WebServlet("/ServletUtilisateur")
-public class ServletUtilisateur extends HttpServlet {
+public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager utilisateur = new UtilisateurManager();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletUtilisateur() {
+    public ServletConnexion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,8 +35,6 @@ public class ServletUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("deco");
 		request.getSession().setAttribute("user", null);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
@@ -62,6 +60,4 @@ public class ServletUtilisateur extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 
 		rd.forward(request, response);
 	}
-	
-
 }

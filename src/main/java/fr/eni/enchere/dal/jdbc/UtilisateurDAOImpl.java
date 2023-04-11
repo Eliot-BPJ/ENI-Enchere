@@ -12,15 +12,15 @@ import fr.eni.enchere.dal.DALException;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
-	private static final String sqlSelectById = "select no_utilisateur, pseudo, nom, prenom, email, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
+	private static final String sqlSelectById = "select no_utilisateur, pseudo, nom, prenom, email, rue, telephone, code_postal, ville, mot_de_passe, credit, administrateur " +
 			" from UTILISATEURS where no_utilisateur = ?";
-	private static final String sqlSelectByPseudo = "select no_utilisateur, pseudo, nom, prenom, email, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
+	private static final String sqlSelectByPseudo = "select no_utilisateur, pseudo, nom, prenom, email, rue, telephone, code_postal, ville, mot_de_passe, credit, administrateur " +
 			" from UTILISATEURS where pseudo = ?";
 	private static final String CREATE_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) "
 			+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private static final String CONNECT = "SELECT no_utilisateur, pseudo, nom, prenom, email, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
-	private static final String UPDATE_USER = "UPDATE UTILISATEURS set pseudo=?,nom=?,prenom=?,email=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE no_utilisateur = ?";
+	private static final String CONNECT = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE no_utilisateur = ?";
 		
 	@Override
 	public UtilisateurBO getUtilisateurByNo(int no) throws DALException {
@@ -38,6 +38,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 							rs.getString("nom"),
 							rs.getString("prenom"),
 							rs.getString("email"),
+							rs.getString("telephone"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
 							rs.getString("ville"),
@@ -84,6 +85,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 							rs.getString("nom"),
 							rs.getString("prenom"),
 							rs.getString("email"),
+							rs.getString("telephone"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
 							rs.getString("ville"),
@@ -124,7 +126,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		try {
 			cnx = JdbcTools.getConnection();
+			System.out.println("La");
 			rqt = cnx.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
+			System.out.println("Par la");
 			rqt.setString(1, user.getPseudo());
 			rqt.setString(2, user.getNom());
 			rqt.setString(3, user.getPrenom());
@@ -137,6 +141,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			rqt.setInt(10, user.getCredit());
 			rqt.setBoolean(11, user.isAdministrateur());
 			rqt.setInt(12, user.getNoUtilisateur());
+			System.out.println("Ici");
 			int nbRows = rqt.executeUpdate();
 			if(nbRows == 1){
 				ResultSet rs = rqt.getGeneratedKeys();
@@ -144,9 +149,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 					user.setNoUtilisateur(rs.getInt(1));
 					return user;
 				}
-
 			}
-
 		}catch(SQLException e){
 			throw new DALException("Insert user failed - " + user, e);
 		}
@@ -245,6 +248,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 							rs.getString("nom"),
 							rs.getString("prenom"),
 							rs.getString("email"),
+							rs.getString("telephone"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
 							rs.getString("ville"),
