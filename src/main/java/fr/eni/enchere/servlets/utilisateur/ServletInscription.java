@@ -2,6 +2,8 @@ package fr.eni.enchere.servlets.utilisateur;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -58,11 +60,16 @@ public class ServletInscription extends HttpServlet {
 			user[index] = value[0];
 			index++;
 		}
+		
+		Pattern pat = Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{12,}$");
+		if (pat.matcher(user[8]).matches() == false) {
+			request.getSession().setAttribute("erreur", "Le mot de passe n'est pas conforme");
+			request.getRequestDispatcher("/inscription.jsp").forward(request, response);
+		}
 
 		if (user[8] != user[9]) {
 			request.getSession().setAttribute("erreur", "Les mots de passes ne sont pas similaires");
 			request.getRequestDispatcher("/inscription.jsp").forward(request, response);
-			return;
 		}
 		byte[] pswdBytes = MD5Utils.digest(user[8].getBytes(StandardCharsets.UTF_8));
 		String pswdHash = Base64.getEncoder().encodeToString(pswdBytes);

@@ -46,7 +46,7 @@
           <form role="form" action="/Enchère/ServletInscription" method="post">
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label for="pseudo" class="form-label col-4">Pseudo</label>
+                <label for="pseudo" class="form-label col-4 h4">Pseudo*</label>
                 <input
                   required
                   type="text"
@@ -57,7 +57,7 @@
                 />
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label for="nom" class="form-label col-4">Nom</label>
+                <label for="nom" class="form-label col-4 h4">Nom*</label>
                 <input
                   required
                   type="text"
@@ -70,7 +70,7 @@
             </div>
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label for="prenom" class="form-label h4">Prénom</label>
+                <label for="prenom" class="form-label h4">Prénom*</label>
                 <input
                   required
                   type="text"
@@ -81,7 +81,7 @@
                 />
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label for="email" class="form-label h4">Email</label>
+                <label for="email" class="form-label h4">Email*</label>
                 <input
                   required
                   type="email"
@@ -94,9 +94,8 @@
             </div>
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label for="telephone" class="form-label h4">Téléphone</label>
+                <label for="telephone" class="form-label h4">Téléphone*</label>
                 <input
-                  required
                   type="tel"
                   class="form-control"
                   id="telephone"
@@ -105,7 +104,7 @@
                 />
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label for="rue" class="form-label h4">Rue</label>
+                <label for="rue" class="form-label h4">Rue*</label>
                 <input
                   required
                   type="text"
@@ -118,7 +117,7 @@
             </div>
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label for="codePostal" class="form-label h4">Code postal</label>
+                <label for="codePostal" class="form-label h4">Code postal*</label>
                 <input
                   required
                   type="text"
@@ -129,7 +128,7 @@
                 />
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label for="ville" class="form-label h4">Ville</label>
+                <label for="ville" class="form-label h4">Ville*</label>
                 <input
                   required
                   type="text"
@@ -142,7 +141,7 @@
             </div>
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label for="mdp" class="form-label h4">Mot de passe</label>
+                <label for="mdp" class="form-label h4">Mot de passe*</label>
                 <input
                   required
                   type="password"
@@ -154,7 +153,7 @@
               </div>
               <div class="col-12 col-md-6 mb-3">
                 <label for="mdp2" class="form-label h4"
-                  >Confirmez mot de passe</label
+                  >Confirmez mot de passe*</label
                 >
                 <input
                   required
@@ -180,10 +179,10 @@
               </div>
               <%
                 String errMsg = (String)session.getAttribute("erreur");
-            	if (errMsg == "Les mots de passes ne sont pas similaires") 
+            	if (errMsg != null)
             	{
               %>
-	              <p class="h5 text-center mt-4"><%=errMsg %></p>
+	              <p class="h5 text-center mt-4 text-danger"><%=errMsg %></p>
 			  <% }
             	session.setAttribute("erreur", null);
               %>

@@ -43,7 +43,7 @@
                 <form action="/Enchère/ServletUpdateProfile" method="POST">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
-                            <label for="pseudo" class="form-label h4">Pseudonyme</label>
+                            <label for="pseudo" class="form-label h4">Pseudo</label>
                             <input type="text" class="form-control" id="pseudo" name="pseudo" value=<%=user.getPseudo()%>>
                         </div>
                         <div class="col-12 col-md-6 mb-3">
