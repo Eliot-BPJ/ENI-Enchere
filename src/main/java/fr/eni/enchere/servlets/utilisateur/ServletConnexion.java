@@ -13,25 +13,15 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.UtilisateurBO;
-import fr.eni.enchere.dal.DAOFactory;
-import fr.eni.enchere.dal.UtilisateurDAO;
 import fr.eni.enchere.utils.MD5Utils;
 
 /**
- * Servlet implementation class ServletUtilisateur
+ * Servlet implementation class ServletConnexion
  */
-@WebServlet("/ServletUtilisateur")
+@WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager utilisateur = new UtilisateurManager();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletConnexion() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +30,7 @@ public class ServletConnexion extends HttpServlet {
 		request.getSession().setAttribute("user", null);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -64,4 +54,5 @@ public class ServletConnexion extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 
 		rd.forward(request, response);
 	}
+
 }
