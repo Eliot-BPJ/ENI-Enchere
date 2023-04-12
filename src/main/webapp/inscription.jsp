@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -46,6 +48,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="pseudo" class="form-label col-4">Pseudo</label>
                 <input
+                  required
                   type="text"
                   class="form-control col-8"
                   id="pseudo"
@@ -56,6 +59,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="nom" class="form-label col-4">Nom</label>
                 <input
+                  required
                   type="text"
                   class="form-control col-8"
                   id="nom"
@@ -68,6 +72,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="prenom" class="form-label h4">Prénom</label>
                 <input
+                  required
                   type="text"
                   class="form-control"
                   id="prenom"
@@ -78,6 +83,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="email" class="form-label h4">Email</label>
                 <input
+                  required
                   type="email"
                   class="form-control"
                   id="email"
@@ -90,6 +96,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="telephone" class="form-label h4">Téléphone</label>
                 <input
+                  required
                   type="tel"
                   class="form-control"
                   id="telephone"
@@ -100,6 +107,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="rue" class="form-label h4">Rue</label>
                 <input
+                  required
                   type="text"
                   class="form-control"
                   id="rue"
@@ -112,6 +120,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="codePostal" class="form-label h4">Code postal</label>
                 <input
+                  required
                   type="text"
                   class="form-control"
                   id="codePostal"
@@ -122,6 +131,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="ville" class="form-label h4">Ville</label>
                 <input
+                  required
                   type="text"
                   class="form-control"
                   id="ville"
@@ -134,6 +144,7 @@
               <div class="col-12 col-md-6 mb-3">
                 <label for="mdp" class="form-label h4">Mot de passe</label>
                 <input
+                  required
                   type="password"
                   class="form-control"
                   id="mdp"
@@ -146,6 +157,7 @@
                   >Confirmez mot de passe</label
                 >
                 <input
+                  required
                   type="password"
                   class="form-control"
                   id="mdp2"
@@ -166,6 +178,15 @@
                   >Annuler</a
                 >
               </div>
+              <%
+                String errMsg = (String)session.getAttribute("erreur");
+            	if (errMsg == "Les mots de passes ne sont pas similaires") 
+            	{
+              %>
+	              <p class="h5 text-center mt-4"><%=errMsg %></p>
+			  <% }
+            	session.setAttribute("erreur", null);
+              %>
             </div>
           </form>
         </div>

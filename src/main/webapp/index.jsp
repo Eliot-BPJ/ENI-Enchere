@@ -46,7 +46,7 @@
                 <a class="link-primary" href="profil.html">Enchères</a>
                 <a class="link-primary" href="profil.html">Vendre un article</a>
                 <a class="link-primary" href="profil.jsp">Mon profil</a>
-                <a href="/Enchère/ServletUtilisateur" class="link-primary">Déconnexion</a>
+                <a href="/Enchère/ServletConnexion" class="link-primary">Déconnexion</a>
               </p>
             </div>
             <%
@@ -55,7 +55,7 @@
             %>
             <div class="d-flex justify-content-lg-end mt-lg-3">
               <p>
-                <a class="link-primary" href="inscription.html">S'inscrire</a> -
+                <a class="link-primary" href="inscription.jsp">S'inscrire</a> -
                 <a href="login.html" class="link-primary">Se connecter</a>
               </p>
             </div>

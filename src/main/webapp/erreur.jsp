@@ -11,5 +11,8 @@
 		String erreurMsg = (String)session.getAttribute("erreur");
 	%>
 	<h1><%=erreurMsg%></h1>
+	<%
+		session.setAttribute("erreur", null);
+	%>
 </body>
 </html>

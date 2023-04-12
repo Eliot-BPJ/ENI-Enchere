@@ -2,6 +2,7 @@ package fr.eni.enchere.servlets.utilisateur;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,16 +37,17 @@ public class ServletConnexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo = request.getParameter("inputPseudo");
+		
 		String password = request.getParameter("inputPassword");
-		UtilisateurBO res = this.utilisateur.connectUtilisateur(pseudo, password);
+		byte[] pswdBytes = MD5Utils.digest(password.getBytes(StandardCharsets.UTF_8));
+		String pswdHash = Base64.getEncoder().encodeToString(pswdBytes);
+		
+		UtilisateurBO user = this.utilisateur.connectUtilisateur(pseudo, pswdHash);
 		String redirectPath = null;
 		HttpSession session = request.getSession();
-		String test = "test";
 	
-		MD5Utils.digest(test.getBytes(StandardCharsets.UTF_8));
-		if (res != null) {
-			System.out.println("Connexion: " + res);
-			session.setAttribute("user", res);
+		if (user != null) {
+			session.setAttribute("user", user);
 			redirectPath = "/index.jsp";
 		} else {
 			session.setAttribute("erreur", "Erreur de connexion à l'utilisateur: " + pseudo);
