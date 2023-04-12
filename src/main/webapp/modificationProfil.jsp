@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-8 mx-auto">
-                <form action="inscription" method="POST">
+                <form action="/Enchère/ServletUpdateProfile" method="POST">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="pseudo" class="form-label h4">Pseudonyme</label>
