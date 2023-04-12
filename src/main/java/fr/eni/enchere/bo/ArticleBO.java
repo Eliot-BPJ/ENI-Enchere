@@ -11,7 +11,6 @@ public class ArticleBO {
 	private int prixInitial;
 	private int prixVente;
 	private CategorieBO categorie;
-	private UtilisateurBO acheteur;
 	private UtilisateurBO vendeur;
 	
 	public ArticleBO() {
@@ -74,12 +73,6 @@ public class ArticleBO {
 	}
 	public void setCategorie(CategorieBO categorie) {
 		this.categorie = categorie;
-	}
-	public UtilisateurBO getAcheteur() {
-		return acheteur;
-	}
-	public void setAcheteur(UtilisateurBO acheteur) {
-		this.acheteur = acheteur;
 	}
 	public UtilisateurBO getVendeur() {
 		return vendeur;
