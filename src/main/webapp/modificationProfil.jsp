@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-8 mx-auto">
-                <form action="inscription" method="POST">
+                <form action="/Enchère/ServletUpdateProfile" method="POST">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="pseudo" class="form-label h4">Pseudonyme</label>
@@ -111,6 +111,15 @@
                         </div>
                     </di>
                 </form>
+                              <%
+                String errMsg = (String)session.getAttribute("erreur");
+            	if (errMsg == "Les mots de passes ne sont pas similaires") 
+            	{
+              %>
+	              <p class="h5 text-center mt-4"><%=errMsg %></p>
+			  <% }
+            	session.setAttribute("erreur", null);
+              %>
             </div>
         </div>
     </div>
