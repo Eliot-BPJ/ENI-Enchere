@@ -111,6 +111,15 @@
                         </div>
                     </di>
                 </form>
+                              <%
+                String errMsg = (String)session.getAttribute("erreur");
+            	if (errMsg == "Les mots de passes ne sont pas similaires") 
+            	{
+              %>
+	              <p class="h5 text-center mt-4"><%=errMsg %></p>
+			  <% }
+            	session.setAttribute("erreur", null);
+              %>
             </div>
         </div>
     </div>
