@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nouvelle vente</title>
+    <title>Vente terminée</title>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -33,7 +33,15 @@
           />
         </div>
         <div class="col-8 mt-2">
-          <h2 class="text-center" style="padding-right: 30%">Détail vente</h2>
+          <!-- if user == vente.gagnant -->
+          <h2 class="text-center" style="padding-right: 30%">
+            Vous avez remporté la vente
+          </h2>
+          <!-- else -->
+          <h2 class="text-center" style="padding-right: 30%">
+            {{ vente.gagnant }} a remporté la vente
+          </h2>
+          <!-- endif -->
           <div class="mb-3">
             <p>{{ article.name }}</p>
           </div>
@@ -41,46 +49,31 @@
             <p>Description : {{ article.description }}</p>
           </div>
           <div class="mb-3">
-            <p>Catégorie : {{ article.category }}</p>
-          </div>
-          <div class="mb-3">
             <p>Meilleure offre : {{ article.meilleureOffre }}</p>
+            <!-- if user != vente.gagnant -->
+            <p>par {{ user.gagnant }}</p>
+            <!-- endif -->
           </div>
           <div class="mb-3">
             <p>Mise à prix : {{ article.miseAPrix }}</p>
           </div>
+          <!-- if user != vente.gagnant -->
           <div class="mb-3">
             <p>Fin de l'enchère : {{ article.dateFinEnchere }}</p>
           </div>
+          <!-- endif -->
           <div class="mb-3">
             <p>Retrait : {{ article.adresseRetrait }}</p>
           </div>
           <div class="mb-3">
             <p>Vendeur : {{ article.vendeur }}</p>
           </div>
-          <form class="mb-3">
-            <div class="row col-12">
-              <div class="col-2">
-                <label for="proposition" class="form-label"
-                  >Ma proposition</label
-                >
-              </div>
-              <div class="col-2">
-                <input
-                  style="width: 100px"
-                  type="number"
-                  class="form-control"
-                  id="proposition"
-                  name="proposition"
-                />
-              </div>
-              <div class="col-4">
-                <button type="button" class="btn btn-primary px-3">
-                  Enchérir
-                </button>
-              </div>
-            </div>
-          </form>
+          <!-- if user == vente.gagnant -->
+          <div class="mb-3">
+            <p>Tel : {{ article.vendeur.telephone }}</p>
+          </div>
+          <!-- endif -->
+          <a href="index.html" class="btn btn-primary px-3 mt-5"> Retour </a>
         </div>
       </div>
     </div>
