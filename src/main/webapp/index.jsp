@@ -44,7 +44,7 @@
             <div class="d-flex justify-content-lg-end mt-lg-3">
               <p>
                 <a class="link-primary" href="profil.html">Enchères</a>
-                <a class="link-primary" href="profil.html">Vendre un article</a>
+                <a class="link-primary" href="nouvelleVente.html">Vendre un article</a>
                 <a class="link-primary" href="profil.jsp">Mon profil</a>
                 <a href="/Enchère/ServletConnexion" class="link-primary">Déconnexion</a>
               </p>
