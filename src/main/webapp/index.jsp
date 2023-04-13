@@ -35,9 +35,9 @@
           <div
             class="d-flex justify-content-between align-items-center align-items-lg-start"
           >
-            <a class="text-decoration-none text-dark" href="/Enchère"
-              ><h1>ENI - Enchères</h1></a
-            >
+            <a class="text-decoration-none text-dark mt-2" href="/Enchère">
+	          	<img style="width: 180px; height: 60px" alt="Eni - Enchères" src="images/LogoENIEncheres.jpeg">            
+            </a>
             <% 
             	if (user != null) 
             	{
@@ -94,13 +94,12 @@
 <!--               <option value="4">Vêtements</option> -->
 <!--               <option value="5">Sports & Loisirs</option> -->
 <!--             </select> -->
-<form method="post">
-			<select name="categorie">
+			<select class="form-select mt-2 w-50" name="categorie">
+				<option value="10">Toutes catégories</option>
     			<c:forEach items="${categorieList}" var="cat">
         			<option value="${cat.getNoCategorie()}">${cat.getLibelle()}</option>
     			</c:forEach>
 			</select>
-</form>
             <%
             	
             	if (user != null) 
