@@ -94,13 +94,12 @@
 <!--               <option value="4">Vêtements</option> -->
 <!--               <option value="5">Sports & Loisirs</option> -->
 <!--             </select> -->
-		<form class="mt-2" method="post">
-			<select name="categorie">
+			<select class="form-select mt-2 w-50" name="categorie">
+				<option value="10">Toutes catégories</option>
     			<c:forEach items="${categorieList}" var="cat">
         			<option value="${cat.getNoCategorie()}">${cat.getLibelle()}</option>
     			</c:forEach>
 			</select>
-		</form>
             <%
             	
             	if (user != null) 
