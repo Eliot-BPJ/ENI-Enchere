@@ -63,11 +63,11 @@
                     <div class="row mx-auto">
                         <div class="col-1"></div>
                         <div class="col-3">
-                            <button type="submit" class="btn btn-dark">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary shadow-sm">Enregistrer</button>
                         </div>
                         <div class="col-1"></div>
                         <div class="col-3 mx-auto">
-                            <a href="modificationProfil.jsp" class="btn btn-dark">Retour</a>
+                            <a href="modificationProfil.jsp" class="btn btn-primary shadow-sm">Retour</a>
                         </div>
                     </di>
                 </form>

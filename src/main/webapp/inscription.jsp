@@ -168,12 +168,12 @@
             </div>
             <div class="row">
               <div class="col-5 mx-auto">
-                <button type="submit" style="width: 100px" class="btn btn-dark">
+                <button type="submit" style="width: 100px" class="btn btn-primary shadow-sm">
                   Créer
                 </button>
               </div>
               <div class="col-5 mx-auto">
-                <a href="index.jsp" style="width: 100px" class="btn btn-dark"
+                <a href="index.jsp" style="width: 100px" class="btn btn-primary shadow-sm"
                   >Annuler</a
                 >
               </div>

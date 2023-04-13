@@ -44,10 +44,10 @@
             %>
             <div class="d-flex justify-content-lg-end mt-lg-3">
               <p>
-                <a class="link-primary" href="profil.html">Enchères</a>
-                <a class="link-primary" href="nouvelleVente.html">Vendre un article</a>
-                <a class="link-primary" href="profil.jsp">Mon profil</a>
-                <a href="/Enchère/ServletConnexion" class="link-primary">Déconnexion</a>
+                <a class="btn btn-primary shadow-sm" href="profil.html">Enchères</a>
+                <a class="btn btn-primary shadow-sm" href="nouvelleVente.html">Vendre un article</a>
+                <a class="btn btn-primary shadow-sm" href="profil.jsp">Mon profil</a>
+                <a href="/Enchère/ServletConnexion" class="btn btn-warning shadow-sm">Déconnexion</a>
               </p>
             </div>
             <%
@@ -56,8 +56,8 @@
             %>
             <div class="d-flex justify-content-lg-end mt-lg-3">
               <p>
-                <a class="link-primary" href="inscription.jsp">S'inscrire</a> -
-                <a href="login.jsp" class="link-primary">Se connecter</a>
+                <a class="btn btn-primary shadow-sm" href="inscription.jsp">S'inscrire</a>
+                <a href="login.jsp" class="btn btn-warning shadow-sm">Se connecter</a>
               </p>
             </div>
             <% } %>
@@ -83,17 +83,6 @@
               placeholder="Le nom de l'article contient"
               aria-label="Search"
             />
-<!--             <select -->
-<!--               class="form-select mt-2" -->
-<!--               aria-label="Default select example" -->
-<!--             > -->
-<!--               <label for="select">Catégorie</label> -->
-<!--               <option value="1">Toutes</option> -->
-<!--               <option value="2">Informatique</option> -->
-<!--               <option value="3">Ameublement</option> -->
-<!--               <option value="4">Vêtements</option> -->
-<!--               <option value="5">Sports & Loisirs</option> -->
-<!--             </select> -->
 			<select class="form-select mt-2 w-50" name="categorie">
 				<option value="10">Toutes catégories</option>
     			<c:forEach items="${categorieList}" var="cat">
@@ -210,7 +199,7 @@
         >
           <button
             type="submit"
-            class="btn btn-primary mt-3 shadow-sm"
+            class="btn btn-outline-primary mt-3 shadow-sm"
             style="width: 100%; height: 48px"
           >
             Rechercher
@@ -222,41 +211,15 @@
     <!-- For each existing article create a bloc with this.article.photo / this.article.titre / ... -->
     <div class="mt-5 container">
       <div class="row d-flex justify-content-around">
-        <!-- EXEMPLE ARTICLE : -->
-<!--         <div class="col-12 col-md-4"> -->
-<!--           <div class="card mt-3"> -->
-<!--             <div class="row"> -->
-<!--               <div class="col-4"> -->
-<!--                 <img -->
-<!--                   src="https://picsum.photos/id/1/100/200" -->
-<!--                   class="card-img-top" -->
-<!--                   alt="image {article.title}" -->
-<!--                 /> -->
-<!--               </div> -->
-<!--               <div class="col-md-8"> -->
-<!--                 <div class="card-body"> -->
-<!--                   <h5 class="card-title">Ordinateur portable</h5> -->
-<!--                   <p class="card-text">Prix de départ : 100</p> -->
-<!--                   <p class="card-text">Fin de l'enchère : 01/01/2021</p> -->
-<!--                   <p class="card-text"> -->
-<!--                     Vendeur : <a href="#" class="link-primary">Jean Dupont</a> -->
-<!--                   </p> -->
-<!--                   <a href="#" class="btn btn-outline-success">Enchérir</a> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-
         <c:forEach items="${enchereList}" var="enchere" >
 
         <div class="col-12 col-md-4">
-          <div class="card mt-3">
+          <div class="card mt-3 shadow-sm">
             <div class="row">
               <div class="col-4">
                 <img
                   src="https://picsum.photos/id/2/100/200"
-                  class="card-img-top"
+                  class="card-img-top rounded"
                   alt="image {article.title}"
                 />
               </div>
@@ -266,7 +229,10 @@
                   <p class="card-text">${enchere.getArticle().getPrixInitial()}</p>
                   <p class="card-text">${enchere.getArticle().getDateFinEncheres()}</p>
                   <p class="card-text">
-                    Vendeur : <a href="#" class="link-primary">${enchere.getArticle().getVendeur().getPseudo()}</a>
+                  <c:url value="/ServletUtilisateur" var="myURL">
+                 	 <c:param name="id" value="${enchere.getArticle().getVendeur().getNoUtilisateur()}" />
+                  </c:url>
+                    Vendeur : <a href="${myURL}" class="link-primary">${enchere.getArticle().getVendeur().getPseudo()}</a>
                   </p>
                   <a href="#" class="btn btn-outline-success">Enchérir</a>
                 </div>

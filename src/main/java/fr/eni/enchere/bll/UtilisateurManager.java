@@ -69,7 +69,17 @@ public class UtilisateurManager {
 		try {
 			user.setMotDePasse(motDePasse);
 			userDAO.updateUtilisateur(user);
-			return user;			
+			return user;
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public UtilisateurBO getUtilisateur(int noUser) {
+		try {
+			UtilisateurBO user = userDAO.getUtilisateurByNo(noUser);
+			return user;
 		} catch (DALException e) {
 			e.printStackTrace();
 		}

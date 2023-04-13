@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Profil</title>
+<title>Profil vendeur</title>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<%
-	UtilisateurBO user = (UtilisateurBO) session.getAttribute("user");
+	UtilisateurBO user = (UtilisateurBO) request.getAttribute("user");
 	%>
 	<div class="container">
 		<div class="row">
@@ -58,20 +58,6 @@
 							<label for="prenom" class="form-label h4">Prénom</label>
 							<p><%=user.getPrenom()%></p>
 						</div>
-						<div class="col-12 col-md-6 mb-3">
-							<label for="email" class="form-label h4">Email</label>
-							<p><%=user.getEmail()%></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12 col-md-6 mb-3">
-							<label for="telephone" class="form-label h4">Téléphone</label>
-							<p><%=user.getTelephone()%></p>
-						</div>
-						<div class="col-12 col-md-6 mb-3">
-							<label for="rue" class="form-label h4">Rue</label>
-							<p><%=user.getRue()%></p>
-						</div>
 					</div>
 					<div class="row">
 						<div class="col-12 col-md-6 mb-3">
@@ -84,10 +70,6 @@
 						</div>
 					</div>
 					<div class="row mx-auto">
-						<div class="col-1"></div>
-						<div class="col-3 mx-auto">
-							<button type="submit" class="btn btn-primary shadow-sm">Modifier</button>
-						</div>
 						<div class="col-1"></div>
 						<div class="col-3 mx-auto">
 							<a href="/Enchère" class="btn btn-primary shadow-sm">Retour</a>

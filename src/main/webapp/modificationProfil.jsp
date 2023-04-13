@@ -100,15 +100,15 @@
                     <div class="row mx-auto">
                         <div class="col-1"></div>
                         <div class="col-3">
-                            <button type="submit" class="btn btn-dark">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary shadow-sm">Enregistrer</button>
                         </div>
                         <div class="col-1"></div>
         	            <div class="col-3 mx-auto">
-    	                    <a href="modificationMdp.jsp" class="btn btn-dark">Modifier MDP</a>
+    	                    <a href="modificationMdp.jsp" class="btn btn-primary shadow-sm">Modifier MDP</a>
 	                    </div>
                         <div class="col-1"></div>
                         <div class="col-3 mx-auto">
-                            <a href="profil.jsp" class="btn btn-dark">Retour</a>
+                            <a href="profil.jsp" class="btn btn-primary shadow-sm">Retour</a>
                         </div>
                     </di>
                 </form>
