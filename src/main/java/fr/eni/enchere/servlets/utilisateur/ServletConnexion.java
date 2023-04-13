@@ -30,7 +30,7 @@ public class ServletConnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("cc2");
 		request.getSession().setAttribute("user", null);
-		request.getRequestDispatcher("profil.jsp").forward(request, response);
+		request.getRequestDispatcher("/").forward(request, response);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class ServletConnexion extends HttpServlet {
 	
 		if (user != null) {
 			session.setAttribute("user", user);
-			redirectPath = "/profil.jsp";
+			redirectPath = "/";
 		} else {
 			session.setAttribute("erreur", "Erreur de connexion à l'utilisateur: " + pseudo);
 			redirectPath = "/login.jsp";

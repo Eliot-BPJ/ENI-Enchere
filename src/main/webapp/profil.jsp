@@ -25,8 +25,9 @@
 			<div class="col-12">
 				<div
 					class="d-flex justify-content-between align-items-center align-items-lg-start">
-					<a class="text-decoration-none text-dark" href="index.jsp"><h1>ENI
-							- Enchères</h1></a>
+					<a class="text-decoration-none text-dark" href="/Enchère">
+						<h1>ENI	- Enchères</h1>
+					</a>
 				</div>
 			</div>
 		</div>
