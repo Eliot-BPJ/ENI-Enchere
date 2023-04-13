@@ -36,17 +36,48 @@ public class ServletUpdateProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		UtilisateurBO actualUser = (UtilisateurBO)session.getAttribute("user");
+
+		String redirectPath = null;
+		String pseudo = request.getParameter("pseudo");		
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email =  request.getParameter("email");
+		String telephone =  request.getParameter("telephone");
+		String codePostal =  request.getParameter("codePostal");
+		String ville =  request.getParameter("ville");
+		String rue =  request.getParameter("rue");
+		UtilisateurBO newUser = utilisateur.updateUser(actualUser,pseudo, nom, prenom, email, telephone, rue, codePostal, ville);
+		if(newUser != null)
+		{
+			session.setAttribute("user", newUser);
+			redirectPath = "/profil.jsp";
+		}
+		else
+		{
+			session.setAttribute("erreur", "Erreur de mise à jour données utilisateur ");
+			redirectPath = "/erreur.jsp";
+		}
+		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		UtilisateurBO actualUser = (UtilisateurBO)session.getAttribute("user");
+		String passwordActual = request.getParameter("mdpactuel");
+		String pswdActualHash = Base64.getEncoder().encodeToString(MD5Utils.digest(passwordActual.getBytes(StandardCharsets.UTF_8)));
+
+		if (!pswdActualHash.equals(actualUser.getMotDePasse())) {
+			request.getSession().setAttribute("erreur", "Mot de passe actuel invalide");
+			request.getRequestDispatcher("/modificationMdp.jsp").forward(request, response);
+			return;
+		}
 		
-		
-		
-		String pseudo = request.getParameter("pseudo");
 		String password = request.getParameter("mdp");
 		String password2 = request.getParameter("mdp2");
 		String pswdHash;
@@ -57,24 +88,15 @@ public class ServletUpdateProfile extends HttpServlet {
 		}
 		else {
 			request.getSession().setAttribute("erreur", "Les mots de passes ne sont pas similaires");
-			request.getRequestDispatcher("/modificationProfil.jsp").forward(request, response);
+			request.getRequestDispatcher("/modificationMdp.jsp").forward(request, response);
 			return;
 		}
-		
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email =  request.getParameter("email");
-		String telephone =  request.getParameter("telephone");
-		String codePostal =  request.getParameter("codePostal");
-		String ville =  request.getParameter("ville");
-		String rue =  request.getParameter("rue");
-		HttpSession session = request.getSession();
+
 		String redirectPath = null;
-		UtilisateurBO user2 = (UtilisateurBO)session.getAttribute("user");
-		UtilisateurBO user =utilisateur.updateUser(user2.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville, pswdHash);
-		if(user != null)
+		UtilisateurBO newUser = utilisateur.updateUserPswd(actualUser, pswdHash);
+		if(newUser != null)
 		{
-			session.setAttribute("user", user);
+			session.setAttribute("user", newUser);
 			redirectPath = "/profil.jsp";
 		}
 		else

@@ -37,7 +37,6 @@ public class ServletConnexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo = request.getParameter("inputPseudo");
-		
 		String password = request.getParameter("inputPassword");
 		byte[] pswdBytes = MD5Utils.digest(password.getBytes(StandardCharsets.UTF_8));
 		String pswdHash = Base64.getEncoder().encodeToString(pswdBytes);

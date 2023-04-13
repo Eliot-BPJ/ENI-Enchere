@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-8 mx-auto">
-                <form action="/Enchère/ServletUpdateProfile" method="POST">
+                <form action="/Enchère/ServletUpdateProfile" method="GET">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="pseudo" class="form-label h4">Pseudo</label>
@@ -84,7 +84,8 @@
                             <input type="text" class="form-control" id="ville" name="ville" value=<%=user.getVille()%>>
                         </div>
                     </div>
-                    <div class="row">
+                    
+<!--                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="mdp" class="form-label h4">Mot de passe</label>
                             <input type="password" class="form-control" id="mdp" name="mdp"
@@ -95,16 +96,16 @@
                             <input type="password" class="form-control" id="mdp2" name="mdp2"
                                 placeholder="********">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mx-auto">
                         <div class="col-1"></div>
                         <div class="col-3">
                             <button type="submit" class="btn btn-dark">Enregistrer</button>
                         </div>
                         <div class="col-1"></div>
-                        <div class="col-3 mx-auto">
-                            <button type="submit" class="btn btn-dark">Supprimer mon compte</button>
-                        </div>
+        	            <div class="col-3 mx-auto">
+    	                    <a href="modificationMdp.jsp" class="btn btn-dark">Modifier MDP</a>
+	                    </div>
                         <div class="col-1"></div>
                         <div class="col-3 mx-auto">
                             <a href="profil.jsp" class="btn btn-dark">Retour</a>
@@ -113,10 +114,10 @@
                 </form>
                               <%
                 String errMsg = (String)session.getAttribute("erreur");
-            	if (errMsg == "Les mots de passes ne sont pas similaires") 
+            	if (errMsg != null)
             	{
               %>
-	              <p class="h5 text-center mt-4"><%=errMsg %></p>
+	              <p class="h5 text-center mt-4 text-danger"><%=errMsg %></p>
 			  <% }
             	session.setAttribute("erreur", null);
               %>

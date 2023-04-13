@@ -46,11 +46,9 @@ public class UtilisateurManager {
 		return null;
 	}
 	
-	public UtilisateurBO updateUser(int no_user,String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
-			String ville, String motDePasse) {
-		UtilisateurBO user = new UtilisateurBO();
+	public UtilisateurBO updateUser(UtilisateurBO user,String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
+			String ville) {
 		try {
-			user.setNoUtilisateur(no_user);
 			user.setPseudo(pseudo);
 			user.setNom(nom);
 			user.setPrenom(prenom);
@@ -59,16 +57,24 @@ public class UtilisateurManager {
 			user.setRue(rue);
 			user.setCodePostal(codePostal);
 			user.setVille(ville);
-			user.setMotDePasse(motDePasse);			
 			userDAO.updateUtilisateur(user);
 			return user;
-			
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
+	public UtilisateurBO updateUserPswd(UtilisateurBO user, String motDePasse) {
+		try {
+			user.setMotDePasse(motDePasse);
+			userDAO.updateUtilisateur(user);
+			return user;			
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }
