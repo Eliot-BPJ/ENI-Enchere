@@ -25,9 +25,9 @@
 			<div class="col-12">
 				<div
 					class="d-flex justify-content-between align-items-center align-items-lg-start">
-					<a class="text-decoration-none text-dark" href="/Enchère">
-						<h1>ENI	- Enchères</h1>
-					</a>
+		            <a class="mt-2 text-decoration-none text-dark" href="/Enchère">
+			          	<img style="width: 180px; height: 60px" alt="Eni - Enchères" src="images/LogoENIEncheres.jpeg">            
+		            </a>
 				</div>
 			</div>
 		</div>

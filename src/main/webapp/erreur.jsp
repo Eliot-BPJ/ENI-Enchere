@@ -7,6 +7,10 @@
 <title>Resultat</title>
 </head>
 <body>
+     <a class="mt-2 text-decoration-none text-dark" href="/Enchère">
+    	<img style="width: 180px; height: 60px" alt="Eni - Enchères" src="images/LogoENIEncheres.jpeg">            
+     </a>
+
 	<%
 		String erreurMsg = (String)session.getAttribute("erreur");
 	%>
