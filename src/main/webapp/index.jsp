@@ -1,6 +1,7 @@
 <%@page import="fr.eni.enchere.bo.UtilisateurBO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +38,7 @@
             <a class="text-decoration-none text-dark" href="index.jsp"
               ><h1>ENI - Enchères</h1></a
             >
-            <%
+            <% 
             	if (user != null) 
             	{
             %>
@@ -82,19 +83,26 @@
               placeholder="Le nom de l'article contient"
               aria-label="Search"
             />
-            <select
-              class="form-select mt-2"
-              aria-label="Default select example"
-            >
-              <label for="select">Catégorie</label>
-              <option value="1">Toutes</option>
-              <option value="2">Informatique</option>
-              <option value="3">Ameublement</option>
-              <option value="4">Vêtements</option>
-              <option value="5">Sports & Loisirs</option>
-            </select>
-
+<!--             <select -->
+<!--               class="form-select mt-2" -->
+<!--               aria-label="Default select example" -->
+<!--             > -->
+<!--               <label for="select">Catégorie</label> -->
+<!--               <option value="1">Toutes</option> -->
+<!--               <option value="2">Informatique</option> -->
+<!--               <option value="3">Ameublement</option> -->
+<!--               <option value="4">Vêtements</option> -->
+<!--               <option value="5">Sports & Loisirs</option> -->
+<!--             </select> -->
+<form method="post">
+			<select name="categorie">
+    			<c:forEach items="${categorieList}" var="cat">
+        			<option value="${cat.getNoCategorie()}">${cat.getLibelle()}</option>
+    			</c:forEach>
+			</select>
+</form>
             <%
+            	
             	if (user != null) 
             	{
             %>
