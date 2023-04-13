@@ -72,8 +72,9 @@
           <h4 class="text-center">Liste des enchères</h4>
         </div>
       </div>
-
+	</div>
       <div class="container">
+      <form action="/Enchère/ServletSearch">
         <h4>Filtres :</h4>
         <div class="row form-group mt-5">
           <div class="col-5">
@@ -82,6 +83,7 @@
               class="form-control mt-1"
               placeholder="Le nom de l'article contient"
               aria-label="Search"
+              id="search" name="search"
             />
 			<select class="form-select mt-2 w-50" name="categorie">
 				<option value="10">Toutes catégories</option>
@@ -206,6 +208,7 @@
           </button>
         </div>
       </div>
+      </form>
     </div>
 
     <!-- For each existing article create a bloc with this.article.photo / this.article.titre / ... -->
