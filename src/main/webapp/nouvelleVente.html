@@ -58,13 +58,18 @@
             </div>
             <div class="mb-3">
               <label for="categorie" class="form-label">Catégorie</label>
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Choisir une catégorie</option>
-                <option value="1">Informatique</option>
-                <option value="2">Ameublement</option>
-                <option value="3">Vêtements</option>
-                <option value="4">Sports & loisirs</option>
-              </select>
+<!--              <select class="form-select" aria-label="Default select example">-->
+<!--                <option selected>Choisir une catégorie</option>-->
+<!--                <option value="1">Informatique</option>-->
+<!--                <option value="2">Ameublement</option>-->
+<!--                <option value="3">Vêtements</option>-->
+<!--                <option value="4">Sports & loisirs</option>-->
+<!--              </select>-->
+			<select name="categorie">
+    			<c:forEach items="${categorieList}" var="cat">
+        			<option value="${cat.no_categorie}">${cat.libelle}</option>
+    			</c:forEach>
+			</select>
             </div>
             <div class="mb-3">
               <label for="photo" class="form-label">Photo de l'article</label>

@@ -28,8 +28,9 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("cc2");
 		request.getSession().setAttribute("user", null);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("profil.jsp").forward(request, response);
 	}
 	
 	/**
@@ -37,7 +38,7 @@ public class ServletConnexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo = request.getParameter("inputPseudo");
-		
+		System.out.println("cc1");
 		String password = request.getParameter("inputPassword");
 		byte[] pswdBytes = MD5Utils.digest(password.getBytes(StandardCharsets.UTF_8));
 		String pswdHash = Base64.getEncoder().encodeToString(pswdBytes);
@@ -48,7 +49,7 @@ public class ServletConnexion extends HttpServlet {
 	
 		if (user != null) {
 			session.setAttribute("user", user);
-			redirectPath = "/index.jsp";
+			redirectPath = "/profil.jsp";
 		} else {
 			session.setAttribute("erreur", "Erreur de connexion à l'utilisateur: " + pseudo);
 			redirectPath = "/erreur.jsp";

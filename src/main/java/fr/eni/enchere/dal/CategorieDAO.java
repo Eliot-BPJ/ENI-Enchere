@@ -1,5 +1,7 @@
 package fr.eni.enchere.dal;
 
+import java.util.List;
+
 import fr.eni.enchere.bo.CategorieBO;
 
 public interface CategorieDAO {
@@ -7,4 +9,5 @@ public interface CategorieDAO {
 	public void createCategorie(CategorieBO categorie) throws DALException;
 	public void updateCategorie(CategorieBO categorie) throws DALException;
 	public void DeleteCategorie(CategorieBO categorie) throws DALException;
+	public List<CategorieBO> getAllCategorie() throws DALException;
 }
