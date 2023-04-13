@@ -26,7 +26,7 @@
             class="d-flex justify-content-between align-items-center align-items-lg-start"
           >
             <a class="text-decoration-none text-dark" href="index.jsp"
- 			 ><h1>ENI - EnchÃ¨res</h1></a
+ 			 ><h1>ENI - Enchères</h1></a
 			>
           </div>
         </div>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="container mx-auto col-6 mt-5" style="width: 400px">
-      <form class="row g-3" role="form" action="/EnchÃ¨re/ServletConnexion" method="post">
+      <form class="row g-3" role="form" action="/Enchère/ServletConnexion" method="post">
         <div class="col-12">
           <label for="inputPseudo" class="form-label h4">Pseudo :</label>
           <input type="text" class="form-control" id="inputPseudo" name="inputPseudo" required/>
@@ -43,6 +43,15 @@
           <label for="inputPassword" class="form-label h4">Mot de passe :</label>
           <input type="password" class="form-control" id="inputPassword" name="inputPassword" required/>
         </div>
+              <%
+                String errMsg = (String)session.getAttribute("erreur");
+            	if (errMsg != null) 
+            	{
+              %>
+	              <p class="h5 text-center mt-4 text-danger"><%=errMsg %></p>
+			  <% }
+            	session.setAttribute("erreur", null);
+              %>
 
         <div class="row mt-3">
           <div class="col-6 d-flex justify-content-start">
@@ -60,7 +69,7 @@
           </div>
         </div>
         <div class="col-12 mb-5 d-flex ml-5 justify-content-center">
-          <a href="#">Mot de passe oubliÃ©</a>
+          <a href="#">Mot de passe oublié</a>
         </div>
       </form>
     </div>
@@ -72,7 +81,7 @@
             class="d-flex justify-content-center align-items-center align-items-lg-start"
           >
             <a class="btn btn-primary shadow py-2 px-5" href="inscription.jsp"
-              >CrÃ©er un compte</a
+              >Créer un compte</a
             >
           </div>
         </div>

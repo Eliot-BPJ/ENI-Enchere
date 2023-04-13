@@ -57,7 +57,7 @@
             <div class="d-flex justify-content-lg-end mt-lg-3">
               <p>
                 <a class="link-primary" href="inscription.jsp">S'inscrire</a> -
-                <a href="login.html" class="link-primary">Se connecter</a>
+                <a href="login.jsp" class="link-primary">Se connecter</a>
               </p>
             </div>
             <% } %>

@@ -52,7 +52,7 @@ public class ServletConnexion extends HttpServlet {
 			redirectPath = "/profil.jsp";
 		} else {
 			session.setAttribute("erreur", "Erreur de connexion à l'utilisateur: " + pseudo);
-			redirectPath = "/erreur.jsp";
+			redirectPath = "/login.jsp";
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(redirectPath); 
 		rd.forward(request, response);
