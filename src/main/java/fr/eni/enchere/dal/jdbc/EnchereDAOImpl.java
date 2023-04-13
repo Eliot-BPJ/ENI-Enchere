@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.enchere.bo.EnchereBO;
 import fr.eni.enchere.dal.DALException;
@@ -14,6 +16,7 @@ import fr.eni.enchere.dal.EnchereDAO;
 public class EnchereDAOImpl implements EnchereDAO {
 	private static final String SELECT_BY_ARTICLE = "SELECT no_utilisateur,date_enchere,montant_enchere FROM ENCHERES WHERE no_article = ?";
 	private static final String SELECT_BY_USER = "SELECT no_utilisateur,date_enchere,montant_enchere FROM ENCHERES WHERE no_utilisateur = ?";
+	private static final String SELECT_ALL = "SELECT no_utilisateur,date_enchere,montant_enchere,no_article FROM ENCHERES";
 	private static final String SELECT_BY_DATE = "SELECT no_utilisateur,date_enchere,montant_enchere FROM ENCHERES WHERE date_enchere = ?";
 	private static final String SELECT_ENCHERE= "SELECT no_utilisateur,date_enchere,montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur = ? AND date_enchere = ?";
 	private static final String CREATE_ENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,montant_enchere) VALUES(?,?,?)";
@@ -215,6 +218,48 @@ public class EnchereDAOImpl implements EnchereDAO {
 
 		} catch (SQLException e) {
 			throw new DALException("selectByDate failed - id = " + date_enchere , e);
+		} finally {
+			try {
+				if (rs != null){
+					rs.close();
+				}
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return enchere;
+	}
+	
+	@Override
+	public List<EnchereBO> getAllEnchere() throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<EnchereBO> enchere = new ArrayList<>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(SELECT_ALL);
+			rs = rqt.executeQuery();
+			while (rs.next()){
+				System.out.println(rs.getDate("date_enchere"));
+				System.out.println(rs.getInt("montant_enchere"));
+				System.out.println(rs.getInt("no_utilisateur"));
+				System.out.println(rs.getInt("no_article"));
+				enchere.add(new EnchereBO(rs.getDate("date_enchere"),
+										rs.getInt("montant_enchere"),
+										DAOFactory.getUtilisateurDAO().getUtilisateurByNo(rs.getInt("no_utilisateur")),
+										DAOFactory.getArticleDAO().getArticleById(rs.getInt("no_article"))));
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectAllEnchere failed ", e);
 		} finally {
 			try {
 				if (rs != null){

@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal;
 
 import java.sql.Date;
+import java.util.List;
 
 import fr.eni.enchere.bo.EnchereBO;
 
@@ -12,4 +13,5 @@ public interface EnchereDAO {
 	public void createEnchere(EnchereBO enchere) throws DALException;
 	public void updateEnchere(EnchereBO enchere) throws DALException;
 	public void DeleteEnchere(EnchereBO enchere) throws DALException;
+	public List<EnchereBO> getAllEnchere() throws DALException;
 }

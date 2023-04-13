@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.CategorieManager;
+import fr.eni.enchere.bll.EnchereManager;
 import fr.eni.enchere.bo.CategorieBO;
+import fr.eni.enchere.bo.EnchereBO;
 
 /**
  * Servlet implementation class ServletIndex
@@ -19,6 +21,7 @@ import fr.eni.enchere.bo.CategorieBO;
 public class ServletIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static CategorieManager categories = new CategorieManager();
+    private static EnchereManager encheres = new EnchereManager();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,11 +35,12 @@ public class ServletIndex extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<CategorieBO> cats = categories.getAllCategorie();
-		System.out.println("ccccccccccc");
-		for (CategorieBO categorieBO : cats) {
-			System.out.println(categorieBO.getLibelle());
-		}
-		request.setAttribute("categorieList", cats);  
+		request.setAttribute("categorieList", cats);
+		System.out.println("cc enchere");
+		List<EnchereBO> enchereList = encheres.getAllEnchere();
+		
+		request.setAttribute("enchereList", enchereList);
+		
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 

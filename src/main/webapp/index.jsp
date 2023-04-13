@@ -223,30 +223,34 @@
     <!-- For each existing article create a bloc with this.article.photo / this.article.titre / ... -->
     <div class="mt-5 container">
       <div class="row d-flex justify-content-around">
-        <div class="col-12 col-md-4">
-          <div class="card mt-3">
-            <div class="row">
-              <div class="col-4">
-                <img
-                  src="https://picsum.photos/id/1/100/200"
-                  class="card-img-top"
-                  alt="image {article.title}"
-                />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Ordinateur portable</h5>
-                  <p class="card-text">Prix de départ : 100</p>
-                  <p class="card-text">Fin de l'enchère : 01/01/2021</p>
-                  <p class="card-text">
-                    Vendeur : <a href="#" class="link-primary">Jean Dupont</a>
-                  </p>
-                  <a href="#" class="btn btn-outline-success">Enchérir</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- EXEMPLE ARTICLE : -->
+<!--         <div class="col-12 col-md-4"> -->
+<!--           <div class="card mt-3"> -->
+<!--             <div class="row"> -->
+<!--               <div class="col-4"> -->
+<!--                 <img -->
+<!--                   src="https://picsum.photos/id/1/100/200" -->
+<!--                   class="card-img-top" -->
+<!--                   alt="image {article.title}" -->
+<!--                 /> -->
+<!--               </div> -->
+<!--               <div class="col-md-8"> -->
+<!--                 <div class="card-body"> -->
+<!--                   <h5 class="card-title">Ordinateur portable</h5> -->
+<!--                   <p class="card-text">Prix de départ : 100</p> -->
+<!--                   <p class="card-text">Fin de l'enchère : 01/01/2021</p> -->
+<!--                   <p class="card-text"> -->
+<!--                     Vendeur : <a href="#" class="link-primary">Jean Dupont</a> -->
+<!--                   </p> -->
+<!--                   <a href="#" class="btn btn-outline-success">Enchérir</a> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+
+        <c:forEach items="${enchereList}" var="enchere" >
+
         <div class="col-12 col-md-4">
           <div class="card mt-3">
             <div class="row">
@@ -259,11 +263,11 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Ordinateur portable</h5>
-                  <p class="card-text">Prix de départ : 100</p>
-                  <p class="card-text">Fin de l'enchère : 01/01/2021</p>
+                  <h5 class="card-title">${enchere.getArticle().getNomArticle()}</h5>
+                  <p class="card-text">${enchere.getArticle().getPrixInitial()}</p>
+                  <p class="card-text">${enchere.getArticle().getDateFinEncheres()}</p>
                   <p class="card-text">
-                    Vendeur : <a href="#" class="link-primary">Jean Dupont</a>
+                    Vendeur : <a href="#" class="link-primary">${enchere.getArticle().getVendeur().getPseudo()}</a>
                   </p>
                   <a href="#" class="btn btn-outline-success">Enchérir</a>
                 </div>
@@ -271,30 +275,9 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4">
-          <div class="card mt-3">
-            <div class="row">
-              <div class="col-4">
-                <img
-                  src="https://picsum.photos/id/3/100/200"
-                  class="card-img-top"
-                  alt="image {article.title}"
-                />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Ordinateur portable</h5>
-                  <p class="card-text">Prix de départ : 100</p>
-                  <p class="card-text">Fin de l'enchère : 01/01/2021</p>
-                  <p class="card-text">
-                    Vendeur : <a href="#" class="link-primary">Jean Dupont</a>
-                  </p>
-                  <a href="#" class="btn btn-outline-success">Enchérir</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </c:forEach>
+        
+        
       </div>
     </div>
   </body>
