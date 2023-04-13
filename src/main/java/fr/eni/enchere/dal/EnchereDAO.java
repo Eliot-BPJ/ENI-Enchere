@@ -14,4 +14,5 @@ public interface EnchereDAO {
 	public void updateEnchere(EnchereBO enchere) throws DALException;
 	public void DeleteEnchere(EnchereBO enchere) throws DALException;
 	public List<EnchereBO> getAllEnchere() throws DALException;
+	public List<EnchereBO> searchEnchere(String word, int categorieID) throws DALException;
 }

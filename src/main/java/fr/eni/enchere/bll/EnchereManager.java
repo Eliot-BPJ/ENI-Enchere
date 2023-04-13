@@ -20,5 +20,15 @@ public class EnchereManager {
 		}
 		return null;
 	}
+	
+	public List<EnchereBO> searchEnchere(String word, int categorieID) {
+		try {
+			List<EnchereBO> encheres = enchereDAO.searchEnchere(word, categorieID);
+			return encheres;
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

@@ -21,7 +21,16 @@ public class EnchereDAOImpl implements EnchereDAO {
 	private static final String SELECT_ENCHERE= "SELECT no_utilisateur,date_enchere,montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur = ? AND date_enchere = ?";
 	private static final String CREATE_ENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,montant_enchere) VALUES(?,?,?)";
 	private static final String DELETE_ARTICLE = "DELETE FROM ENCHERES WHERE no_utilisateur= ? AND no_article= ? AND date_enchere = ?";
-	
+	private static final String SELECT_BY_WORD_AND_CAT = "SELECT no_utilisateur,date_enchere,montant_enchere,no_article "+
+			"FROM ENCHERES T1 "+
+			"INNER JOIN ARTICLES_VENDUS T2 ON T1.no_article = T2.no_article "+
+			"WHERE nom_article like %?% "+
+			"AND no_categorie = ?";
+	private static final String SELECT_BY_WORD = "SELECT no_utilisateur,date_enchere,montant_enchere,no_article "+
+			"FROM ENCHERES T1 "+
+			"INNER JOIN ARTICLES_VENDUS T2 ON T1.no_article = T2.no_article "+
+			"WHERE nom_article like %?% "+
+			"AND no_categorie = ?";
 	@Override
 	public EnchereBO getEnchereByArticle(int id_article) throws DALException {
 		Connection cnx = null;
@@ -60,6 +69,56 @@ public class EnchereDAOImpl implements EnchereDAO {
 		}
 		return enchere;
 	}
+	
+	@Override
+	public List<EnchereBO> searchEnchere(String word, int categorieID) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<EnchereBO> enchere = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			if(categorieID == 10)
+			{
+				rqt = cnx.prepareStatement(SELECT_BY_WORD);
+				rqt.setString(1, word);
+			}
+			else
+			{
+				rqt = cnx.prepareStatement(SELECT_BY_WORD_AND_CAT);
+				rqt.setString(1, word);
+				rqt.setInt(2, categorieID);
+			}
+			
+			rs = rqt.executeQuery();
+			while (rs.next()){
+				enchere.add(new EnchereBO(rs.getDate("date_enchere"),
+										rs.getInt("montant_enchere"),
+										DAOFactory.getUtilisateurDAO().getUtilisateurByNo(rs.getInt("no_utilisateur")),
+										DAOFactory.getArticleDAO().getArticleById(rs.getInt("no_article"))));
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("searchEnchere failed " , e);
+		} finally {
+			try {
+				if (rs != null){
+					rs.close();
+				}
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return enchere;
+	}
+	
 	@Override
 	public void createEnchere(EnchereBO enchere) throws DALException {
 		Connection cnx = null;
